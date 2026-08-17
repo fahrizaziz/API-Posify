@@ -26,18 +26,21 @@ let CaslAbilityFactory = class CaslAbilityFactory {
             can(Action.Manage, 'all');
         }
         else if (user.role === client_1.Role.MANAGER) {
+            can(Action.Read, 'Outlet', { id: user.outletId });
             can(Action.Manage, 'Product', { outletId: user.outletId });
             can(Action.Manage, 'Order', { outletId: user.outletId });
             can(Action.Manage, 'User', { outletId: user.outletId });
             cannot(Action.Read, 'Product', ['costPrice']);
         }
         else if (user.role === client_1.Role.INVENTORY_STAFF) {
+            can(Action.Read, 'Outlet', { id: user.outletId });
             can(Action.Read, 'Product', { outletId: user.outletId });
             can(Action.Update, 'Product', ['stock'], { outletId: user.outletId });
             cannot(Action.Delete, 'Product');
             cannot(Action.Read, 'Product', ['costPrice', 'sellPrice']);
         }
         else if (user.role === client_1.Role.CASHIER) {
+            can(Action.Read, 'Outlet', { id: user.outletId });
             can(Action.Read, 'Product', { outletId: user.outletId });
             cannot(Action.Read, 'Product', ['costPrice']);
             can(Action.Create, 'Order', { outletId: user.outletId });

@@ -50,6 +50,7 @@ model Product {
   sellPrice   Decimal  @db.Decimal(10, 2)
   stock       Int      @default(0) // Note: PostgreSQL CHECK (stock >= 0) constraint to be added in migration
   isActive    Boolean  @default(true)
+  imageUrl    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
