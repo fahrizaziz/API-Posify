@@ -32,15 +32,15 @@ export class ProductsController {
     }
     
     return this.productsService.create({
-      ...createProductDto,
-      // Need to handle conversion since formData sends strings
+      sku: createProductDto.sku,
+      name: createProductDto.name,
       costPrice: Number(createProductDto.costPrice),
       sellPrice: Number(createProductDto.sellPrice),
       stock: Number(createProductDto.stock),
       outletId: Number(createProductDto.outletId),
       isActive: createProductDto.isActive !== undefined ? String(createProductDto.isActive) === 'true' : true,
       imageUrl
-    } as any); // Cast to any to pass to service since we augmented with imageUrl
+    } as any);
   }
 
   @Get()
@@ -71,12 +71,14 @@ export class ProductsController {
       imageUrl = uploadResult.secure_url;
     }
 
-    const dataToUpdate: any = { ...updateProductDto };
-    if (dataToUpdate.costPrice) dataToUpdate.costPrice = Number(dataToUpdate.costPrice);
-    if (dataToUpdate.sellPrice) dataToUpdate.sellPrice = Number(dataToUpdate.sellPrice);
-    if (dataToUpdate.stock) dataToUpdate.stock = Number(dataToUpdate.stock);
-    if (dataToUpdate.outletId) dataToUpdate.outletId = Number(dataToUpdate.outletId);
-    if (dataToUpdate.isActive !== undefined) dataToUpdate.isActive = String(dataToUpdate.isActive) === 'true';
+    const dataToUpdate: any = {};
+    if (updateProductDto.sku !== undefined) dataToUpdate.sku = updateProductDto.sku;
+    if (updateProductDto.name !== undefined) dataToUpdate.name = updateProductDto.name;
+    if (updateProductDto.costPrice !== undefined) dataToUpdate.costPrice = Number(updateProductDto.costPrice);
+    if (updateProductDto.sellPrice !== undefined) dataToUpdate.sellPrice = Number(updateProductDto.sellPrice);
+    if (updateProductDto.stock !== undefined) dataToUpdate.stock = Number(updateProductDto.stock);
+    if (updateProductDto.outletId !== undefined) dataToUpdate.outletId = Number(updateProductDto.outletId);
+    if (updateProductDto.isActive !== undefined) dataToUpdate.isActive = String(updateProductDto.isActive) === 'true';
     if (imageUrl) dataToUpdate.imageUrl = imageUrl;
 
     return this.productsService.update(+id, dataToUpdate);

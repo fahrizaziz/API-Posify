@@ -6,4 +6,5 @@ export declare class CreateProductDto {
     stock: number;
     outletId: number;
     isActive?: boolean;
+    imageUrl?: string;
 }
