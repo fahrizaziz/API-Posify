@@ -18,12 +18,14 @@ const reports_module_1 = require("./reports/reports.module");
 const prisma_module_1 = require("./prisma/prisma.module");
 const users_module_1 = require("./users/users.module");
 const casl_module_1 = require("./casl/casl.module");
+const cloudinary_module_1 = require("./cloudinary/cloudinary.module");
+const outlets_module_1 = require("./outlets/outlets.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, products_module_1.ProductsModule, orders_module_1.OrdersModule, sync_module_1.SyncModule, reports_module_1.ReportsModule, prisma_module_1.PrismaModule, users_module_1.UsersModule, casl_module_1.CaslModule],
+        imports: [auth_module_1.AuthModule, products_module_1.ProductsModule, orders_module_1.OrdersModule, sync_module_1.SyncModule, reports_module_1.ReportsModule, prisma_module_1.PrismaModule, users_module_1.UsersModule, casl_module_1.CaslModule, cloudinary_module_1.CloudinaryModule, outlets_module_1.OutletsModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

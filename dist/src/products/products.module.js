@@ -8,10 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductsModule = void 0;
 const common_1 = require("@nestjs/common");
+const products_service_1 = require("./products.service");
+const products_controller_1 = require("./products.controller");
+const prisma_module_1 = require("../prisma/prisma.module");
+const casl_module_1 = require("../casl/casl.module");
+const cloudinary_module_1 = require("../cloudinary/cloudinary.module");
 let ProductsModule = class ProductsModule {
 };
 exports.ProductsModule = ProductsModule;
 exports.ProductsModule = ProductsModule = __decorate([
-    (0, common_1.Module)({})
+    (0, common_1.Module)({
+        imports: [prisma_module_1.PrismaModule, casl_module_1.CaslModule, cloudinary_module_1.CloudinaryModule],
+        controllers: [products_controller_1.ProductsController],
+        providers: [products_service_1.ProductsService],
+    })
 ], ProductsModule);
 //# sourceMappingURL=products.module.js.map

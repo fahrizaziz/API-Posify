@@ -9,9 +9,11 @@ import { ReportsModule } from './reports/reports.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UsersModule } from './users/users.module';
 import { CaslModule } from './casl/casl.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { OutletsModule } from './outlets/outlets.module';
 
 @Module({
-  imports: [AuthModule, ProductsModule, OrdersModule, SyncModule, ReportsModule, PrismaModule, UsersModule, CaslModule],
+  imports: [AuthModule, ProductsModule, OrdersModule, SyncModule, ReportsModule, PrismaModule, UsersModule, CaslModule, CloudinaryModule, OutletsModule],
   controllers: [AppController],
   providers: [AppService],
 })
