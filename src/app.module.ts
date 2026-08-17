@@ -7,9 +7,11 @@ import { OrdersModule } from './orders/orders.module';
 import { SyncModule } from './sync/sync.module';
 import { ReportsModule } from './reports/reports.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { UsersModule } from './users/users.module';
+import { CaslModule } from './casl/casl.module';
 
 @Module({
-  imports: [AuthModule, ProductsModule, OrdersModule, SyncModule, ReportsModule, PrismaModule],
+  imports: [AuthModule, ProductsModule, OrdersModule, SyncModule, ReportsModule, PrismaModule, UsersModule, CaslModule],
   controllers: [AppController],
   providers: [AppService],
 })
