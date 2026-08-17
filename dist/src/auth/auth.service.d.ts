@@ -8,5 +8,12 @@ export declare class AuthService {
     login(email: string, pass: string): Promise<{
         access_token: string;
         refresh_token: string;
+        user: {
+            id: any;
+            name: any;
+            email: any;
+            role: any;
+            outletId: any;
+        };
     }>;
 }

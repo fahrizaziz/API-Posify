@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Outlet {
-  id        String    @id @default(uuid())
+  id        Int       @id @default(autoincrement())
   name      String
   address   String?
   isActive  Boolean   @default(true)
@@ -21,7 +21,7 @@ model Outlet {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        Int      @id @default(autoincrement())
   email     String   @unique
   password  String
   name      String
@@ -30,7 +30,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  outletId  String?
+  outletId  Int?
   outlet    Outlet?  @relation(fields: [outletId], references: [id])
   orders    Order[]
 }
@@ -43,7 +43,7 @@ enum Role {
 }
 
 model Product {
-  id          String   @id @default(uuid())
+  id          Int      @id @default(autoincrement())
   sku         String   @unique
   name        String
   costPrice   Decimal  @db.Decimal(10, 2)
@@ -53,13 +53,13 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  outletId    String
+  outletId    Int
   outlet      Outlet   @relation(fields: [outletId], references: [id])
   orderItems  OrderItem[]
 }
 
 model Order {
-  id            String      @id @default(uuid())
+  id            Int         @id @default(autoincrement())
   orderNumber   String      @unique
   totalAmount   Decimal     @db.Decimal(10, 2)
   status        OrderStatus @default(PENDING)
@@ -67,23 +67,23 @@ model Order {
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
 
-  outletId      String
+  outletId      Int
   outlet        Outlet      @relation(fields: [outletId], references: [id])
-  userId        String
+  userId        Int
   user          User        @relation(fields: [userId], references: [id])
   orderItems    OrderItem[]
 }
 
 model OrderItem {
-  id          String   @id @default(uuid())
+  id          Int      @id @default(autoincrement())
   quantity    Int
   costPrice   Decimal  @db.Decimal(10, 2) // Snapshot Pricing
   sellPrice   Decimal  @db.Decimal(10, 2) // Snapshot Pricing
   subtotal    Decimal  @db.Decimal(10, 2)
 
-  orderId     String
+  orderId     Int
   order       Order    @relation(fields: [orderId], references: [id])
-  productId   String
+  productId   Int
   product     Product  @relation(fields: [productId], references: [id])
 }
 
